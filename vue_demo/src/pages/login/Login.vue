@@ -163,12 +163,11 @@
                     if (loginResult.code === 0) {
                         // 登录成功
                         this.$store.dispatch('getUserInfo');
-
                         // 跳转路由
                         this.$router.replace('/personal');
+
                     } else {
                         this.alertTip(loginResult.msg);
-
                     }
                     this.getCaptcha();
                 }

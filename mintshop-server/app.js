@@ -17,7 +17,7 @@ app.all("*", function(req, res, next) {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET");
   res.set("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
-  // res.set('Access-Control-Allow-Max-Age', 3600);
+  res.set('Access-Control-Allow-Max-Age', 3600);
   if ("OPTIONS" === req.method) return res.send(200);
   next();
 });

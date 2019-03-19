@@ -9,6 +9,7 @@ const users = {}
 const ajax = require('../api/ajax')
 var svgCaptcha = require('svg-captcha')
 
+let sessionObj = {};
 /*
 密码登陆
  */
@@ -19,11 +20,11 @@ router.post('/login_pwd', function (req, res) {
   console.log('/login_pwd', name, pwd, captcha, req.session)
 
   // 可以对用户名/密码格式进行检查, 如果非法, 返回提示信息
-  if(captcha!==req.session.captcha) {
+  if(captcha!==sessionObj.captcha) {
     return res.send({code: 1, msg: '验证码不正确'})
   }
   // 删除保存的验证码
-  delete req.session.captcha
+  delete sessionObj.captcha
 
   UserModel.findOne({name}, function (err, user) {
     if (user) {
@@ -31,7 +32,7 @@ router.post('/login_pwd', function (req, res) {
       if (user.pwd !== pwd) {
         res.send({code: 1, msg: '用户名或密码不正确!'})
       } else {
-        req.session.userid = user._id
+        sessionObj.userid = user._id
         res.send({code: 0, data: {_id: user._id, name: user.name, phone: user.phone}})
       }
     } else {
@@ -39,7 +40,7 @@ router.post('/login_pwd', function (req, res) {
       userModel.save(function (err, user) {
         // 向浏览器端返回cookie(key=value)
         // res.cookie('userid', user._id, {maxAge: 1000*60*60*24*7})
-        req.session.userid = user._id
+        sessionObj.userid = user._id
         const data = {_id: user._id, name: user.name}
         // 3.2. 返回数据(新的user)
         res.send({code: 0, data})
@@ -57,8 +58,8 @@ router.get('/captcha', function (req, res) {
     noise: 2,
     color: true
   });
-  req.session.captcha = captcha.text.toLowerCase();
-  console.log(req.session.captcha)
+  sessionObj.captcha = captcha.text.toLowerCase();
+  //console.log(req.session.captcha)
   /*res.type('svg');
   res.status(200).send(captcha.data);*/
   res.type('svg');
@@ -104,13 +105,13 @@ router.post('/login_sms', function (req, res, next) {
 
   UserModel.findOne({phone}, function (err, user) {
     if (user) {
-      req.session.userid = user._id
+      sessionObj.userid = user._id
       res.send({code: 0, data: user})
     } else {
       //存储数据
       const userModel = new UserModel({phone})
       userModel.save(function (err, user) {
-        req.session.userid = user._id
+        sessionObj.userid = user._id
         res.send({code: 0, data: user})
       })
     }
@@ -122,13 +123,13 @@ router.post('/login_sms', function (req, res, next) {
  */
 router.get('/userinfo', function (req, res) {
   // 取出userid
-  const userid = req.session.userid
+  const userid = sessionObj.userid
   // 查询
   UserModel.findOne({_id: userid}, _filter, function (err, user) {
     // 如果没有, 返回错误提示
     if (!user) {
       // 清除浏览器保存的userid的cookieuserInfo:Object
-      delete req.session.userid
+      delete sessionObj.userid
 
       res.send({code: 1, msg: '请先登陆'})
     } else {
@@ -141,7 +142,7 @@ router.get('/userinfo', function (req, res) {
 
 router.get('/logout', function (req, res) {
   // 清除浏览器保存的userid的cookie
-  delete req.session.userid
+  delete sessionObj.userid
   // 返回数据
   res.send({code: 0})
 })
