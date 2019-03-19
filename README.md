@@ -15,35 +15,35 @@ vue_demo -----> npm install --save
 
 ## 样品图库
 ### 1. 首页图片
-![首页图片](../README_IMG/首页.png  "首页")
+![首页图片](./README_IMG/首页.png  "首页")
 首页搜索
-![首页图片](../README_IMG/搜索.png  "首页搜索") 
+![首页图片](./README_IMG/搜索.png  "首页搜索") 
 
 ### 2. 发现页图片
-![发现商铺图片](../README_IMG/发现.png  "发现")
+![发现商铺图片](./README_IMG/发现.png  "发现")
 
 ### 3. 订单页图片
 未登录时:
-![未登录](../README_IMG/未登录订单页面.png  "订单")
+![未登录](./README_IMG/未登录订单页面.png  "订单")
 已登录:
-![已登录](../README_IMG/登录了的订单页面.png  "订单")
+![已登录](./README_IMG/登录了的订单页面.png  "订单")
 
 ### 4. 个人页面图片
 未登录时:
-![未登录](../README_IMG/未登录的个人页面.png  "个人")
+![未登录](./README_IMG/未登录的个人页面.png  "个人")
 已登录:
-![已登录](../README_IMG/登录了的个人页面.png  "个人")
+![已登录](./README_IMG/登录了的个人页面.png  "个人")
 
 ### 5. 登录界面图片
-![短信登录](../README_IMG/短信登录页面.png  "登录")
-![密码登录](../README_IMG/密码登录页面.png  "登录")
+![短信登录](./README_IMG/短信登录页面.png  "登录")
+![密码登录](./README_IMG/密码登录页面.png  "登录")
 
 ### 6. 商铺界面图片
 订餐:
-![订餐](../README_IMG/商铺点餐.png  "商铺")
+![订餐](./README_IMG/商铺点餐.png  "商铺")
 
 评价:
-![评价](../README_IMG/商铺评论.png  "商铺")
+![评价](./README_IMG/商铺评论.png  "商铺")
 
 商家:
-![商家信息](..README_IMG/商铺商家信息.png  "商铺")
+![商家信息](.README_IMG/商铺商家信息.png  "商铺")
