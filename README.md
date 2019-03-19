@@ -47,4 +47,4 @@ vue_demo -----> npm install --save
 ![评价](./README_IMG/商铺评论.png  "商铺")  
 
 商家:  
-![商家信息](.README_IMG/商铺商家信息.png  "商铺")  
+![商家信息](./README_IMG/商铺商家信息.png  "商铺")  
