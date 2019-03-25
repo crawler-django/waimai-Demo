@@ -152,6 +152,7 @@ router.get('/logout', function (req, res) {
  */
 router.get('/position/:geohash', function (req, res) {
   const {geohash} = req.params
+  console.log(geohash);
   ajax(`http://cangdu.org:8001/v2/pois/${geohash}`)
     .then(data => {
       res.send({code: 0, data})

@@ -30,3 +30,37 @@ export default function ajax(url = '', data = {}, type = 'GET') {
       })
   })
 }
+
+export function fetchInfo(url='', data={}, methods='get') {
+  let initObj = {};
+  const searchStr = obj2String(data);
+  if (methods.toLowerCase() == 'get') {
+    url += '?' + searchStr
+
+    initObj = {
+      method: 'GET',
+    };
+  } else if (methods.toLowerCase() == 'post') {
+      initObj = {
+        method: 'POST',
+        body: searchStr,
+        //credentials: 'include'
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+      };
+  }
+
+  return fetch(url, initObj).then(response => {
+    return response.json();
+  }).then(res => {
+    return res;
+  }).catch(e => e);
+}
+
+function obj2String(obj, arr = [], idx = 0) {
+  for (let item in obj) {
+    arr[idx++] = [item, obj[item]]
+  }
+  return new URLSearchParams(arr).toString()
+}
