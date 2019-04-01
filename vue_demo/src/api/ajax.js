@@ -34,6 +34,7 @@ export default function ajax(url = '', data = {}, type = 'GET') {
 export function fetchInfo(url='', data={}, methods='get') {
   let initObj = {};
   const searchStr = obj2String(data);
+  // console.log(searchStr);
   if (methods.toLowerCase() == 'get') {
     url += '?' + searchStr
 

@@ -39,7 +39,8 @@
                 contentHeight: 0,
                 noSearch: true,
                 searchNodeHeight: 0,
-                search: ''
+                search: '',
+                timer: ''
             }
         },
         computed: {
@@ -48,14 +49,19 @@
         methods: {
             ...mapActions(['getFoodTypes', 'getShops']),
             showSearchNode () {
-                const search = this.search.trim();
-                if (search) {
-                    this.$store.dispatch('getSearchShops', search);
-                    this.noSearch = false;
-                } else {
-                    this.noSearch = true;
-                }
-
+                this._debounceSearch(this);
+            },
+            _debounceSearch (context) {
+                context.timer && clearTimeout(context.timer);
+                context.timer = setTimeout(function () {
+                    const search = context.search.trim();
+                    if (search) {
+                        context.$store.dispatch('getSearchShops', search);
+                        context.noSearch = false;
+                    } else {
+                        context.noSearch = true;
+                    }
+                }, 200);
             }
         },
         mounted() {

@@ -71,7 +71,7 @@
                             <div class="photo" >
                                 <img v-for="(photo,index) in userRating.photos" :key="index" :src="photo" :style="{width: userRating.photos.length > 2 ? 100/userRating.photos.length - userRating.photos.length - 0.5 + '%' : '47.5%'}" @click="showPic($event)">
                             </div>
-                            <div class="thumbs-up">
+                            <div class="thumbs-up" v-if="userRating.recommend != 0">
                                 <i class="iconfont icon-zan"></i>
                                 <span v-for="(item, index) in userRating.recommend" :key="index">
                                     {{item}}

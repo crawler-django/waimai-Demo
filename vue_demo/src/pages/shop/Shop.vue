@@ -144,7 +144,6 @@
         <transition name="hidden">
             <MyMask></MyMask>
         </transition>
-
     </div>
 </template>
 
